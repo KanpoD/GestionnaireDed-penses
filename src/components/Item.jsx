@@ -1,25 +1,24 @@
-import {usePostContext} from '../context/Context.jsx';
+import React, { useContext } from "react";
+import { ExpenseContext } from "../context/Context";
 
-const Item = ({exepense}) => {
+const Item = ({ id, amount, category, description }) => {
+  const { dispatch } = useContext(ExpenseContext);
 
-    const [_, dispatch] = usePostContext()
+  const handleDelete = () => {
+    dispatch({
+      type: "DELETE_EXPENSE",
+      payload: id,
+    });
+  };
 
-    const handleDelete = () => {
-        dispatch({
-            type: 'deletItem',
-            payload: exepense.id
-        })
-    }
+  return (
+    <li style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <p>Montant: {amount}</p>
+      <p>Catégorie: {category}</p>
+      <p>Description: {description}</p>
+      <button onClick={handleDelete}>Supprimer</button>
+    </li>
+  );
+};
 
-    return (
-        <li style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-            <p>{exepense.title}</p>
-            <p>{exepense.categorie}</p>
-            <p>{exepense.description}</p>
-            <p>{exepense.id}</p>
-            <button onClick={handleDelete}>X</button>
-        </li>
-    )
-}
-
-export default Item
+export default Item;

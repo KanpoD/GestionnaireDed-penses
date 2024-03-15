@@ -1,29 +1,29 @@
+import React, { useContext } from "react";
+import { ExpenseContext } from "../context/Context";
+import Item from "./Item";
+
 const Table = () => {
-  const expenses = [
-    { id: 1, title: "item 1", value: "10" },
-    { id: 2, title: "item 2", value: "15" },
-    { id: 3, title: "item 3", value: "20" },
-  ];
+  const { state } = useContext(ExpenseContext);
+  const { expenses } = state;
 
   return (
     <>
       {expenses.length > 0 ? (
-        <ul>
+        <ul className="list">
           {expenses.map((expense) => {
-            // return <Item key={expense.id} amount={expense.amount} category={expense.category} description={exepense.description}/>
             return (
-              <li
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
-              >
-                <p>
-                  {expense.title} - {expense.value}
-                </p>
-              </li>
+              <Item
+                key={expense.id}
+                amount={expense.amount}
+                category={expense.category}
+                description={expense.description}
+                id={expense.id}
+              />
             );
           })}
         </ul>
       ) : (
-        <span>Aucun post à afficher pour le moment.</span>
+        <span>Pas de dépense à afficher.</span>
       )}
     </>
   );

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { usePostContext } from "../context/Context.jsx";
+import React, { useState, useContext } from "react";
+import { ExpenseContext } from "../context/Context";
+import { categories } from "../data/categories";
 
 const Form = () => {
-  const [state, dispatch] = usePostContext();
-  //   console.log(state);
+  const { dispatch } = useContext(ExpenseContext);
 
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -13,25 +13,21 @@ const Form = () => {
     event.preventDefault();
 
     if (amount.trim() && category.trim()) {
-      const { amount, category, description } = event.target;
       dispatch({
-        type: "addPost",
+        type: "ADD_EXPENSE",
         payload: {
+          id: Date(),
           amount: parseFloat(amount),
           category: category.trim(),
-          description: "",
-        },
+          description: description.trim()
+        }
       });
-
-      console.log(event.target);
 
       setAmount("");
       setCategory("");
       setDescription("");
-
-      return;
     } else {
-      console.log("tous les champs doivent etre saisie");
+      alert("Tous les champs doivent être saisis.");
     }
   };
 
@@ -49,13 +45,11 @@ const Form = () => {
         Catégorie:
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option value="">Sélectionner une catégorie</option>
-          <option value="Alimentation">Alimentation</option>
-          <option value="Logement">Logement</option>
-          <option value="Transport">Transport</option>
-          <option value="Divertissement">Divertissement</option>
-          <option value="Santé">Santé</option>
-          <option value="Éducation">Éducation</option>
-          <option value="Autres">Autres</option>
+          {categories.map((categrorie) => (
+            <option key={categrorie} value={categrorie}>
+              {categrorie}
+            </option>
+          ))}
         </select>
       </label>
       <label>

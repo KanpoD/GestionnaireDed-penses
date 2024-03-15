@@ -1,20 +1,18 @@
-import {createContext, useContext, useReducer} from 'react';
-import postReducer, {initialState} from '../reducer/Reducer.jsx'
+import React, { createContext, useReducer } from 'react';
+import expenseReducer from '../reducer/ExpenseReducer.jsx';
 
+const initialState = {
+  expenses: []
+};
 
-const postContext = createContext()
+export const ExpenseContext = createContext();
 
-export const usePostContext = () => {
-    return useContext(postContext);
-}
+export const ExpenseProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(expenseReducer, initialState);
 
-
-const ProvidePostContext = ({children}) => {
-    const [state, dispatch] = useReducer(postReducer, initialState);
-
-    return <postContext.Provider value={[state, dispatch]}>
-        {children}
-    </postContext.Provider>
-}
-
-export default ProvidePostContext
+  return (
+    <ExpenseContext.Provider value={{ state, dispatch }}>
+      {children}
+    </ExpenseContext.Provider>
+  );
+};
