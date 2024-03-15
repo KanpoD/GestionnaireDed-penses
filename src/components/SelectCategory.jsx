@@ -2,9 +2,12 @@ import { useState } from "react";
 import { categories } from "../data/categories";
 const SelectCategory = () => {
   const [value, setValue] = useState("");
+  const test ='';
 
   const handleChange = (e) => {
     setValue(e.target.value);
+    console.log(e.target.value);
+    
   };
 
   return (
@@ -12,7 +15,7 @@ const SelectCategory = () => {
       <option value="">Sélectionner une catégorie</option>
       {categories.map((categorie) => (
         <option key={categorie} value={categorie}>
-          {categorie}
+          {categorie} 
         </option>
       ))}
     </select>
