@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { usePostContext } from "../context/Context.jsx";
 
 const Form = () => {
+  const [state, dispatch] = usePostContext();
+  //   console.log(state);
 
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -10,17 +13,23 @@ const Form = () => {
     event.preventDefault();
 
     if (amount.trim() && category.trim()) {
-      const expense = {
-        amount: parseFloat(amount),
-        category: category.trim(),
-        description: ''
-      };
+      const { amount, category, description } = event.target;
+      dispatch({
+        type: "addPost",
+        payload: {
+          amount: parseFloat(amount),
+          category: category.trim(),
+          description: "",
+        },
+      });
 
-      console.log(expense);
+      console.log(event.target);
 
       setAmount("");
       setCategory("");
       setDescription("");
+
+      return;
     } else {
       console.log("tous les champs doivent etre saisie");
     }
