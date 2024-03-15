@@ -5,11 +5,13 @@ import Table from './components/Table'
 import './App.css'
 import { ExpenseProvider } from './context/Context';
 
+
 const App = () => {
   return (
     <ExpenseProvider>
       <div className="App">
         <Form />
+        
         <Table/>
       </div>
     </ExpenseProvider>
