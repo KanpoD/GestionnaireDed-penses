@@ -19,8 +19,8 @@ const Form = () => {
           id: Date(),
           amount: parseFloat(amount),
           category: category.trim(),
-          description: description.trim()
-        }
+          description: description.trim(),
+        },
       });
 
       setAmount("");
@@ -32,36 +32,41 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Montant:
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-      </label>
-      <label>
-        Catégorie:
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">Sélectionner une catégorie</option>
-          {categories.map((categrorie) => (
-            <option key={categrorie} value={categrorie}>
-              {categrorie}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Description:
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </label>
-      <button type="submit">Ajouter dépense</button>
-    </form>
+    <div className="form_container">
+      <form onSubmit={handleSubmit}>
+        <label>
+          Montant:
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </label>
+        <label>
+          Catégorie:
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">Sélectionner une catégorie</option>
+            {categories.map((categrorie) => (
+              <option key={categrorie} value={categrorie}>
+                {categrorie}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Description:
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </label>
+        <button type="submit">Ajouter dépense</button>
+      </form>
+    </div>
   );
 };
 

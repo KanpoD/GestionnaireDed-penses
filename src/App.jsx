@@ -10,9 +10,9 @@ const App = () => {
   return (
     <ExpenseProvider>
       <div className="App">
-        <Form />
-        
+      <h1>Dépenses</h1>
         <Table/>
+        <Form />
       </div>
     </ExpenseProvider>
   );

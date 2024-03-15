@@ -11,7 +11,7 @@ const ExpenseFilter = (props) => {
 
     return(
         <div>
-            filtrer par catégorie:
+            Filtrer par catégorie:
         <select value={filterCategory} onChange={(e) => send(e.target.value)}>
           <option value="">Sélectionner une catégorie</option>
           {categories.map((categrorie) => (

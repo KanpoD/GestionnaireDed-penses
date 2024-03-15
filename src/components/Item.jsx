@@ -13,9 +13,9 @@ const Item = ({ id, amount, category, description }) => {
 
   return (
     <li style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-      <p>Montant: {amount}</p>
-      <p>Catégorie: {category}</p>
-      <p>Description: {description}</p>
+      <p>{amount} &euro;</p>
+      <p>{category}</p>
+      <p>{description}</p>
       <button onClick={handleDelete}>Supprimer</button>
     </li>
   );
